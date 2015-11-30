@@ -191,11 +191,11 @@ function delete(id)
             <ul>
               <li class="fragment">like RDF triples</li>
               <li class="fragment"><code>uri://people#<font color=red>Mike</font>Smith12 http://xmlns.com/foaf/0.1/<font color=red>knows</font> uri://people#<font color=red>John</font>Doe45</code></li>
-              <li class="fragment">"What makes RDF triples special is that EVERY PART of the triple has a URI associated with it" -- <a href="http://stackoverflow.com/a/1122451/1791856">Stack Overflow</a></li>
+              <li class="fragment">"What makes RDF triples special is that EVERY PART of the triple has a URI associated with it" — <a href="http://stackoverflow.com/a/1122451/1791856">Stack Overflow</a></li>
             </ul>
             <li>hypermedia just wants to make you happy 🎁</li>
             <ul>
-              <li class="fragment">like OData URL conventions</li>
+              <li class="fragment">like <a href="http://blogs.msdn.com/b/webdev/archive/2013/07/05/introducing-select-and-expand-support-in-web-api-odata.aspx">OData URL conventions</a></li>
               <li class="fragment"><code>$select</code> and <code>$expand</code></li>
               <li class="fragment">"give me only these bits" and "give me every relation inline" (eager load it)</li>
             </ul>
@@ -216,6 +216,7 @@ function delete(id)
         </section>
 
         <section>
+          <p>our new mental model: graphs</p>
           <ul>
             <li>the server has a canonical superset of all possible application states it recognizes how to move through as a graph (every state is a node, and has edges to other nodes)</li>
             <li>the client can rearrange any useful subgraph of those states it wants and make it available to the final key ingredient: <b>user input/intent</b></li>
@@ -229,7 +230,7 @@ function delete(id)
 
         <section>
           <p>importantly, the client can request different sized "graphs" based on a set of tradeoffs like no network requests vs late and dynamic binding</p>
-          <p class="fragment">want to minimize requests? grab the biggest possible representation of application state with controls <b>embedded</b> to <i>other potential application states</i>, cache it, and move on</p>
+          <p class="fragment">want to minimize requests? grab the biggest possible representation of application state with controls <b>embedded</b> of <i>other potential application states</i>, cache it, and move on</p>
           <p class="fragment">want to allow late and dynamic binding? grab the smallest representation of application state with minimal controls <b>pointing</b> to other potential application states</p>
         </section>
 
