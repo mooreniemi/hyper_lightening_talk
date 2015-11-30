@@ -99,7 +99,12 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
         </section>
 
         <section>
-          <h2>why'd the Web beat Gopher? <i>hypermedia</i> 😎</h2>
+          <p>but what about <i>your</i> "Web" APIs? do they look more like Gopher or the Web?</p>
+          <p class="bubble fragment">😬</p>
+        </section>
+
+        <section>
+          <h3>why'd the Web beat Gopher? <i class="fragment">hypermedia 😎 </i></h3>
           <blockquote>
             <a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm">Hypermedia</a> is defined by the presence of application control information embedded within, or as a layer above, the presentation of information. Distributed hypermedia allows the presentation and control information to be stored at remote locations.
           </blockquote>
@@ -161,7 +166,8 @@ function delete(id)
         </section>
 
         <section>
-          <h2>💡  dealing with some common points of confusion</h2>
+          <h2>dealing with some common points of confusion</h2>
+          <h2 class="fragment">💡</h2>
         </section>
 
         <section>
@@ -213,15 +219,18 @@ function delete(id)
           <ul>
             <li>the server has a canonical superset of all possible application states it recognizes how to move through as a graph (every state is a node, and has edges to other nodes)</li>
             <li>the client can rearrange any useful subgraph of those states it wants and make it available to the final key ingredient: <b>user input/intent</b></li>
-            <li><span style="background-color:yellow;">so <i>between the <b>2</b> of them</i>, you have a useful program</span></li>
+            <span class="fragment">
+              <img style="border-style:none;" src="graphs.gif">
+              <small>think of the server's graph as <b>black</b>, and the client's graph as <font color=red><b>red</b></font></small>
+            </span>
+            <li class="fragment"><span style="background-color:yellow;">so <i>between the <b>2</b> of them</i>, you have a useful program</span></li>
           </ul>
-          <img style="border-style:none;" src="graphs.gif">
         </section>
 
         <section>
-          <p>importantly, the client can request different sized "graphs" based on a set of tradeoffs like cachability vs correctness/late binding</p>
-          <p>want to minimize requests? grab the biggest possible representation of application state with controls <b>embedded</b> to <i>other potential application states</i>, cache it, and move on</p>
-          <p>want to allow late and dynamic binding? grab the smallest representation of application state with minimal controls <b>pointing</b> to other potential application states</p>
+          <p>importantly, the client can request different sized "graphs" based on a set of tradeoffs like no network requests vs late and dynamic binding</p>
+          <p class="fragment">want to minimize requests? grab the biggest possible representation of application state with controls <b>embedded</b> to <i>other potential application states</i>, cache it, and move on</p>
+          <p class="fragment">want to allow late and dynamic binding? grab the smallest representation of application state with minimal controls <b>pointing</b> to other potential application states</p>
         </section>
 
         <section>
@@ -242,12 +251,12 @@ function delete(id)
         </section>
 
         <section>
-          <p>this means clients can <em>respond</em> to change, not be broken by it. it also means business logic is centralized away from disparate clients requiring many redundant implementations. it also means clients can focus on the <b>user</b>, not the server.</p>
+          <p>this means: clients can <em>respond</em> to change, not be broken by it; business logic is centralized, avoiding redundant implementations; <span style="background-color:yellow;">clients can focus on the <b>user</b>, not the server.</span></p>
         </section>
 
         <section>
           <p class="bubble">😑....idgi...</p>
-          <p>Check out my extended presentation on <a href="http://mooreniemi.github.io/hypermedia-presentation/#/">hypermedia</a>, discuss in #rest on freenode, or if all else fails, <a href="mailto:moore.niemi@gmail.com">ask me</a>. 😁</p>
+          <p>Check out my extended presentation on <a href="http://mooreniemi.github.io/hypermedia-presentation/#/">hypermedia</a>, discuss in <code>#rest</code> on <a href="https://webchat.freenode.net/">freenode</a>, or if all else fails, <a href="mailto:moore.niemi@gmail.com">ask me</a>. 😁</p>
         </section>
 
         <!--<section>-->
