@@ -1,3 +1,3 @@
 # hypermedia lightning talk
-## featuring the link
-### with a brief camero by the url convention
+## featuring: the link :link:
+### with a brief cameo by the url convention :nut_and_bolt:
