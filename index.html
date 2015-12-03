@@ -138,8 +138,10 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
           <h2>links are a key control mechanism for state change</h2>
           <ul>
             <li>when you hear "link" you probably think of LO (Link Outbound): "out-bound navigational links (HTTP GET)"</li>
+            <li>
+              <pre><code class="hljs" data-trim contenteditable><a href="http://www.example.org/about" rel="about" />about</a></code></pre>
+            </li>
             <li class="fragment">but links come in other flavors: <font color=green>templated queries (HTTP GET)</font>, <font color=purple>embedded (transcluded) links (HTTP GET)</font>, <font color=blue>idempotent updates (HTTP PUT, DELETE)</font>, <font color=red>non-idempotent updates (HTTP POST)</font></li>
-            <li class="fragment">links are the server's pre-addressed pre-paid <em>form</em> letters for the client to use: all the client should need to add is a user's input (intent, to trigger state change)</li>
           </ul>
         </section>
 
@@ -185,6 +187,17 @@ function delete(id)
           <p class="fragment bubble">"oh so you mean it's SOAP basically..?"</p>
           <p class="fragment">no.</p>
           <p class="fragment">💌 + 📄  ⊂ REST</p>
+        </section>
+
+        <section>
+          <h2>wtf is a rel???</h2>
+          <pre><code class="hljs" data-trim contenteditable><a href="http://www.example.org/about" rel="about" />about</a></code></pre>
+          <ul>
+            <li>A URL is an implementation detail.</li>
+            <li>A rel is a reflection of your domain.</li>
+            <li></li>
+            <li></li>
+          </ul>
         </section>
 
         <section>
