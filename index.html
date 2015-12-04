@@ -111,17 +111,20 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
         </section>
 
         <section>
-          <h3>why'd the Web beat Gopher? <i class="fragment">hypermedia 😎 </i></h3>
-          <blockquote>
-            <a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm">Hypermedia</a> is defined by the presence of application control information embedded within, or as a layer above, the presentation of information. Distributed hypermedia allows the presentation and control information to be stored at remote locations.
-          </blockquote>
-          <small> — Roy Fielding</small>
+          <h3>why'd the Web beat Gopher? </h3>
+          <div class="fragment">
+            <h4>hypermedia 😎 </h4>
+            <p>here's Fielding to help us grok:</p>
+            <blockquote>
+              <a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm">Hypermedia</a> is defined by the presence of application control information embedded within, or as a layer above, the presentation of information. Distributed hypermedia allows the presentation and control information to be stored at remote locations.
+            </blockquote>
+          </div>
         </section>
 
         <!-- cyber city by shelest at http://shelest.deviantart.com/art/Cyber-City-3d-04-312818454 -->
         <section data-background="cyber_city_by_shelest.jpg">
           <blockquote style="background-color:white;">
-            A distributed hypermedia architect has only three fundamental options: <ol><li>render the data where it is located and send a fixed-format image to the recipient;</li> <li>encapsulate the data with a rendering engine and send both to the recipient; or,</li> <li>send the raw data to the recipient along with metadata that describes the data type, so that the recipient can choose their own rendering engine.</li></ol>
+            A distributed hypermedia architect has only three fundamental options: <ol><li>render the data where it is located and <span style="background-color:yellow;">send a fixed-format image</span> to the recipient;</li> <li>encapsulate the data with a rendering engine and <span style="background-color:yellow;">send both</span> to the recipient; or,</li> <li>send the <span style="background-color:yellow;">raw data</span> to the recipient along <span style="background-color:yellow">with metadata</span> that describes the data type, so that the recipient can choose their own rendering engine.</li></ol>
           </blockquote>
         </section>
 
@@ -135,7 +138,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
         </section>
 
         <section>
-          <h2>links are a key control mechanism for state change</h2>
+          <h2>links are the key control mechanism for state change</h2>
           <ul>
             <li>when you hear "link" you probably think of LO (Link Outbound): "out-bound navigational links (HTTP GET)"</li>
             <li>
@@ -180,23 +183,51 @@ function delete(id)
         </section>
 
         <section>
-          <h2>📨  == SOAP ???</h2>
+          <h2>📨  == 🛁 (SOAP) ???</h2>
           <blockquote>
             links are the server's pre-addressed pre-paid <em>form</em> letters for the client to use: all the client should need to add is a user's input
           </blockquote>
           <p class="fragment bubble">"oh so you mean it's SOAP basically..?"</p>
           <p class="fragment">no.</p>
-          <p class="fragment">💌 + 📄  ⊂ REST</p>
+          <p class="fragment">SOAP <i>tunnels</i> through the protocol. Hypermedia <i>expresses</i> some of its program's semantics via the available protocol <i>and</i> its message's affordances.</p>
+        </section>
+
+        <section>
+          <p>what does this function do? what happens when it changes?</p>
+          <pre><code>
+POST /SomeFunction HTTP/1.1
+Host: www.example.org
+Content-Type: application/soap+xml; charset=utf-8
+Content-Length: 299
+SOAPAction: "http://example.org/api/free-tickets-to-disney-land"
+
+<?xml version="1.0"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+  <soap:Header>
+  </soap:Header>
+  <soap:Body>
+    <m:SomeFunction xmlns:m="http://www.example.org/SomeFunction">
+      <m:SomeParam>:)</m:SomeParam>
+    </m:SomeFunction>
+  </soap:Body>
+</soap:Envelope>
+          </code></pre>
+        </section>
+
+        <section>
+          <p>SOAP emphasizes function calling (RPC - Remote Procedure Call), while hypermedia is about message passing.</p>
+          <p>SOAP does have a message affordance: <code>SOAPAction</code>, which describes the "intent" of the SOAP message. Not super far off from the notion of a <code>rel</code> in HTML.</p>
         </section>
 
         <section>
           <h2>wtf is a rel???</h2>
           <pre><code class="hljs" data-trim contenteditable><a href="http://www.example.org/about" rel="about" />about</a></code></pre>
           <ul>
+            <li>A <code>rel</code> is a <em>message affordance</em> abstracting the dereferenceable message affordance underneath it.</li>
             <li>A URL is an implementation detail.</li>
-            <li>A rel is a reflection of your domain model.</li>
+            <li>A <code>rel</code> is a reflection of your domain model.</li>
             <li>A URL can change. Multiple URLs can point to the same resource.</li>
-            <li>A rel changes much slower, because it reflects the <em>purpose</em> of our API.</li>
+            <li>A <code>rel</code> can change, but should change much slower, because it reflects the <em>purpose</em> of our API. (And that doesn't "pivot" as often or as quickly as our code.)</li>
           </ul>
         </section>
 
@@ -255,8 +286,9 @@ function delete(id)
         </section>
 
         <section>
-          <h4>stuff hypermedia <b>does not solve</b> <span class="fragment">changing program <i>data schema</i></span></h4>
+          <h4>stuff hypermedia <b>does not solve</b><sup>*</sup> <span class="fragment">changing program <i>data schema</i></span></h4>
           <h4>stuff hypermedia <b>does solve</b> <span class="fragment">changing program <i>topology</i></span></h4>
+          <p class="fragment" style="background-color:#ffe5ff;"><sup>*</sup> if the client supports meta-programming, hypermedia can solve this problem. yes, <a href="http://stackoverflow.com/questions/3037643/typed-metaprogramming-languages">static langs</a> can be meta-programmed. no, i have not lost my mind. 😅 </p>
         </section>
 
         <section>
