@@ -295,6 +295,14 @@ SOAPAction: "http://example.org/api/free-tickets-to-disney-land"
           <h4>stuff hypermedia <b>does not solve</b><sup>*</sup> <span class="fragment">changing program <i>data schema</i></span></h4>
           <h4>stuff hypermedia <b>does solve</b> <span class="fragment">changing program <i>topology</i></span></h4>
           <p class="fragment" style="background-color:#ffe5ff;"><sup>*</sup> if the client supports meta-programming or polymorphic representation of untyped data (like maps) hypermedia can solve this problem. <em>yes</em>, <a href="http://stackoverflow.com/questions/3037643/typed-metaprogramming-languages">static langs</a> can be meta-programmed. <em>no</em>, i have not lost my mind. 😅 </p>
+          <aside class="notes">
+            the constraints a client needs to accept to solve the first problem involve some tradeoffs.
+            i think ideally, truly responsive clients with a shared understanding of controls and data types could work this way.
+            in the real world, my guess is that this would best serve as a way to decouple server and client release cycles,
+            for example, you could release on the server a change that is handled programmatically by the client until the client
+            has time to flesh out the actual functionality via its own release. think MVP. you might not want to expose the user
+            to anything less than the best possible UI. that's something to keep in mind as a trade off.
+          </aside>
         </section>
 
         <section>
