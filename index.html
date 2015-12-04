@@ -116,7 +116,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
             <h4>hypermedia 😎 </h4>
             <p>here's Fielding to help us grok:</p>
             <blockquote>
-              <a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm">Hypermedia</a> is defined by the presence of application control information embedded within, or as a layer above, the presentation of information. Distributed hypermedia allows the presentation and control information to be stored at remote locations.
+              <a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm">Hypermedia</a> is defined by the presence of <span style="background-color:yellow;">application control information embedded within, or as a layer above, the presentation of information</span>. Distributed hypermedia allows the presentation and control information to be stored at remote locations.
             </blockquote>
           </div>
         </section>
@@ -251,12 +251,12 @@ SOAPAction: "http://example.org/api/free-tickets-to-disney-land"
               <li class="fragment">"give me only these bits" and "give me every relation inline" (eager load it)</li>
             </ul>
           </ul>
-        </section>
 
-        <section>
-          <p>linked data prioritizes data discovery, hypermedia prioritizes <i>useful</i> program data</p>
-          <p>what do they have in common?</p>
-          <p>they use <em>structured</em> data</p>
+          <aside class="notes">
+            linked data prioritizes data discovery, hypermedia prioritizes useful program data
+            what do they have in common?
+            they use structured data
+          </aside>
         </section>
 
         <section>
@@ -294,7 +294,7 @@ SOAPAction: "http://example.org/api/free-tickets-to-disney-land"
         <section>
           <h4>stuff hypermedia <b>does not solve</b><sup>*</sup> <span class="fragment">changing program <i>data schema</i></span></h4>
           <h4>stuff hypermedia <b>does solve</b> <span class="fragment">changing program <i>topology</i></span></h4>
-          <p class="fragment" style="background-color:#ffe5ff;"><sup>*</sup> if the client supports meta-programming, hypermedia can solve this problem. yes, <a href="http://stackoverflow.com/questions/3037643/typed-metaprogramming-languages">static langs</a> can be meta-programmed. no, i have not lost my mind. 😅 </p>
+          <p class="fragment" style="background-color:#ffe5ff;"><sup>*</sup> if the client supports meta-programming or polymorphic representation of untyped data (like maps) hypermedia can solve this problem. <em>yes</em>, <a href="http://stackoverflow.com/questions/3037643/typed-metaprogramming-languages">static langs</a> can be meta-programmed. <em>no</em>, i have not lost my mind. 😅 </p>
         </section>
 
         <section>
