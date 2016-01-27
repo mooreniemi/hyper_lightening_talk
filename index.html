@@ -122,7 +122,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
           <ol>
             <li>"traditional client-server style" is Option 1, and means you only get what the server can render for you. GraphQL <i>by itself</i> fits in here, by putting a declarative interface on that rendering of data.</li>
             <li>Flash and Java applets are examples of Option 2. Obvious downsides: big over the wire, compatibility issues on the client.</li>
-            <li>Protobuf is described by Option 3, if you squint.</li>
+            <li>RPC schemes that work by sharing header files (declarations) fit in Option 3, and so does Protobuf if you squint a little.</li>
           </ol>
         </section>
 
@@ -132,6 +132,15 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
           </blockquote>
           <aside class="notes">REST describes a statically typed program with early binding: types are known "at compile time".
           This "engine" is the interpreter pattern. (The interpreter pattern is a free Monad.)</aside>
+        </section>
+
+        <section>
+          <p class="bubble">How do the server and client share understanding of data types?</p>
+          <p class="fragment">Content negotiation, though there's a weak spot here: both client and server need to know about possible media formats at development time.</p>
+          <p class="bubble">Where do we get our standardized interface?</p>
+          <p class="fragment">Our protocol.</p>
+          <p class="fragment bubble">But HTTP sux. :c</p>
+          <p class="fragment">That's just one protocol. Don't let it box you in!</p>
         </section>
 
         <section>
