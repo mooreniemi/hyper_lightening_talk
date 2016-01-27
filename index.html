@@ -86,13 +86,12 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
       <div class="slides">
         <section>
           <h1>hypermedia lightning talk</h1>
-          <h3>featuring: the link 🔗  </h3>
-          <h5>with a brief cameo by the url convention🔩</h5>
+          <h3>or, in defense of centralization of some computation</h3>
+          <h5>(but not all of it)</h5>
           <p>
           <small>by <a href="http://mooreniemi.githubl.io">Alex Moore-Niemi</a> / <a href="http://twitter.com/feminstwerewolf">@feminstwerewolf</a></small>
           </p>
         </section>
-
 
         <section>
           <img src="slicing.jpg">
@@ -105,12 +104,6 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
               <td>(e) GraphQL</td>
               </tr>
             </table>
-        </section>
-
-        <section>
-            <blockquote>
-              <a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm">Hypermedia</a> is defined by the presence of <span style="background-color:yellow;">application control information embedded within, or as a layer above, the presentation of information</span>. Distributed hypermedia allows the presentation and control information to be stored at remote locations.
-            </blockquote>
         </section>
 
         <!-- cyber city by shelest at http://shelest.deviantart.com/art/Cyber-City-3d-04-312818454 -->
@@ -127,9 +120,9 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 
         <section>
           <ol>
-            <li>"traditional client-server style" is Option 1, and basically means everything happens on the server. GraphQL fits in here.</li>
+            <li>"traditional client-server style" is Option 1, and means you only get what the server can render for you. GraphQL <i>by itself</i> fits in here, by putting a declarative interface on that rendering of data.</li>
             <li>Flash and Java applets are examples of Option 2. Obvious downsides: big over the wire, compatibility issues on the client.</li>
-            <li>Protobuf is a good example of Option 3: "allows the sender to remain simple and scalable while minimizing the bytes transferred, but loses the advantages of information hiding and requires that both sender and recipient understand the same data types."</li>
+            <li>Protobuf is described by Option 3, if you squint.</li>
           </ol>
         </section>
 
@@ -141,65 +134,16 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
           This "engine" is the interpreter pattern. (The interpreter pattern is a free Monad.)</aside>
         </section>
 
+        <section>
+            <blockquote>
+              <a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm">Hypermedia</a> is defined by the presence of <span style="background-color:yellow;">application control information embedded within, <b>or as a layer above</b>, the presentation of information</span>. Distributed hypermedia allows the presentation and control information to be stored at remote locations.
+            </blockquote>
+        </section>
+
         <section data-background="cyber_city_by_shelest.jpg">
           <blockquote style="background-color:white;">
             The model application is therefore an <span style="background-color:yellow;">engine that moves from one state to the next by examining and choosing from among the alternative state transitions in the current set of representations.</span>
           </blockquote>
-        </section>
-
-        <section>
-          <h2>links are the key control mechanism for state change</h2>
-          <ul>
-            <li>when you hear "link" you probably think of LO (Link Outbound): "out-bound navigational links (HTTP GET)"</li>
-            <li>
-              <pre><code class="hljs" data-trim contenteditable><a href="http://www.example.org/about" rel="about" />about</a></code></pre>
-            </li>
-            <li class="fragment">but links come in other flavors: <font color=green>templated queries (HTTP GET)</font>, <font color=purple>embedded (transcluded) links (HTTP GET)</font>, <font color=blue>idempotent updates (HTTP PUT, DELETE)</font>, <font color=red>non-idempotent updates (HTTP POST)</font></li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>all of these are links</h2>
-          <pre><code class="hljs" data-trim contenteditable>
-<img src="http://www.example.org/images/logo" title="company logo" />
-          </code></pre>
-          <pre><code class="hljs" data-trim contenteditable>
-<form method="get">
-   <label>Search term:</label>
-   <input name="query" type="text" value="" />
-   <input type="submit" />
-</form>
-          </code></pre>
-          <pre><code class="hljs" data-trim contenteditable>
-<form method="post" action="http://www.example.org/my-keywords"/>
-   <label>Keywords:</label>
-   <input name="keywords" type="text" value="" />
-   <input type="submit" />
-</form>
-          </code></pre>
-          <pre><code class="hljs" data-trim contenteditable>
-function delete(id)
-    {
-      var client = new XMLHttpRequest();
-      client.open("DELETE", "/records/"+id);
-    }
-          </code></pre>
-          <p>from <a href="http://amundsen.com/hypermedia/hfactor/">hfactors</a></p>
-        </section>
-
-        <section>
-          <h2>dealing with some common points of confusion</h2>
-          <h2 class="fragment">💡</h2>
-        </section>
-
-        <section>
-          <h2>📨  == 🛁 (SOAP) ???</h2>
-          <blockquote>
-            links are the server's pre-addressed pre-paid <em>form</em> letters for the client to use: all the client should need to add is a user's input
-          </blockquote>
-          <p class="fragment bubble">"oh so you mean it's SOAP basically..?"</p>
-          <p class="fragment">no.</p>
-          <p class="fragment">SOAP <i>tunnels</i> through the protocol. Hypermedia <i>expresses</i> some of its program's semantics via the available protocol <i>and</i> its message's affordances.</p>
         </section>
 
         <section>
@@ -225,6 +169,7 @@ SOAPAction: "http://example.org/api/free-tickets-to-disney-land"
         </section>
 
         <section>
+          <p>SOAP <i>tunnels</i> through the protocol. Hypermedia <i>expresses</i> some of its program's semantics via the available protocol <i>and</i> its message's affordances.</p>
           <p>SOAP emphasizes function calling (RPC - Remote Procedure Call), while hypermedia is about message passing.</p>
           <p>SOAP does have a message affordance: <code>SOAPAction</code>, which describes the "intent" of the SOAP message. Not super far off from the notion of a <code>rel</code> in HTML.</p>
         </section>
@@ -242,35 +187,6 @@ SOAPAction: "http://example.org/api/free-tickets-to-disney-land"
         </section>
 
         <section>
-          <p class="bubble">yeah but we're not like a library or data science shop so why would we care about linked data...</p>
-        </section>
-
-        <section>
-          <h2>hypermedia != linked data</h2>
-            <h3>linked data likes super duper normalized data 🔬</h3>
-            <ul>
-              <li class="fragment">like RDF triples</li>
-              <li class="fragment"><code>uri://people#<font color=red>Mike</font>Smith12 http://xmlns.com/foaf/0.1/<font color=red>knows</font> uri://people#<font color=red>John</font>Doe45</code></li>
-              <li class="fragment">"What makes RDF triples special is that EVERY PART of the triple has a URI associated with it" — <a href="http://stackoverflow.com/a/1122451/1791856">Stack Overflow</a></li>
-            </ul>
-          </section>
-
-          <section>
-            <h3>hypermedia just wants to make you happy 🎁</h3>
-            <ul>
-              <li class="fragment">like <a href="http://blogs.msdn.com/b/webdev/archive/2013/07/05/introducing-select-and-expand-support-in-web-api-odata.aspx">OData URL conventions</a></li>
-              <li class="fragment"><code>$select</code> and <code>$expand</code></li>
-              <li class="fragment">"give me only these bits" and "give me every relation inline" (eager load it)</li>
-            </ul>
-
-          <aside class="notes">
-            linked data prioritizes data discovery, hypermedia prioritizes useful program data
-            what do they have in common?
-            they use structured data
-          </aside>
-        </section>
-
-        <section>
           <p>our new mental model: graphs</p>
           <ul>
             <li>the server has a canonical superset of all possible application states it recognizes how to move through as a graph (every state is a node, and has edges to other nodes)</li>
@@ -284,9 +200,9 @@ SOAPAction: "http://example.org/api/free-tickets-to-disney-land"
         </section>
 
         <section>
-          <p>importantly, the client can request different sized "graphs" based on a set of tradeoffs like no network requests vs late and dynamic binding</p>
+          <p>importantly, the client can request different sized "graphs" based on a set of tradeoffs like no network requests vs flexibility</p>
           <p class="fragment">want to minimize requests? grab the biggest possible representation of application state with controls <b>embedded</b> of <i>other potential application states</i>, cache it, and move on</p>
-          <p class="fragment">want to allow late and dynamic binding? grab the smallest representation of application state with minimal controls <b>linking</b> (pointing) to other potential application states</p>
+          <p class="fragment">want to allow flexibility? grab the smallest representation of application state with minimal controls <b>linking</b> (referencing, like reference types) to other potential application states</p>
         </section>
 
         <section>
@@ -316,11 +232,11 @@ SOAPAction: "http://example.org/api/free-tickets-to-disney-land"
         </section>
 
         <section>
-          <p>this means: clients can <em>respond</em> to change, not be broken by it; business logic is centralized, avoiding redundant implementations; <span style="background-color:yellow;">clients can focus on the <b>user</b>, not the server.</span></p>
+          <p>this means: clients can <em>respond</em> to change, not be broken by it; business logic is centralized, thus consistent; <span style="background-color:yellow;">clients can focus on the <b>user</b>, not the server.</span></p>
         </section>
 
         <section>
-          <p class="bubble">😑....idgi...</p>
+          <p class="bubble">😑 idgi...</p>
           <p>Check out my extended presentation on <a href="http://mooreniemi.github.io/hypermedia-presentation/#/">hypermedia</a>, discuss in <code>#rest</code> on <a href="https://webchat.freenode.net/">freenode</a>, or if all else fails, <a href="mailto:moore.niemi@gmail.com">ask me</a>. 😁</p>
         </section>
 
