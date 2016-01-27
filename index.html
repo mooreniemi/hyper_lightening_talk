@@ -160,22 +160,34 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
         </section>
 
         <section>
-          <p>our new mental model: graphs</p>
+          <h3>so when might I want hypermedia?</h3>
+          <p>When you have relatively little control over your clients, ie., can't expect them to update (mobile).</p>
+          <p>When you need properties like dynamic dispatch (associating an implementation with an operation) and dynamic binding (associating a name with an operation) in your program.</p>
+        </section>
+
+        <section>
+          <h3>what are the tradeoffs?</h3>
+          <p>Hypermedia requires the client to work with a certain granularity of programmatically generatable interaction units.</p>
+          <p>This would make working with Storyboard driven development in iOS difficult and maybe impossible.</p>
+          <p>In Android, activities need to be declared in the manifest at compile time, but fragments could be generated during runtime.</p>
+        </section>
+
+        <section>
+          <p>Our new mental model: Graphs</p>
           <ul>
-            <li>the server has a canonical superset of all possible application states it recognizes how to move through as a graph (every state is a node, and has edges to other nodes)</li>
-            <li>the client can rearrange any useful subgraph of those states it wants and make it available to the final key ingredient: <b>user input/intent</b></li>
+            <li>The server has a canonical superset of all possible application states it recognizes how to move through as a graph (every state is a node, and has edges to other nodes).</li>
+            <li>The client can rearrange any useful subgraph of those states it wants and make it available to the final key ingredient: <b>user input/intent</b>.</li>
             <span class="fragment">
               <img style="border-style:none;" src="graphs.gif">
               <small>think of the server's graph as <b>black</b>, and the client's graph as <font color=red><b>red</b></font></small>
             </span>
-            <li class="fragment"><span style="background-color:yellow;">so <i>between the <b>2</b> of them</i>, you have a useful program</span></li>
           </ul>
         </section>
 
         <section>
-          <p>importantly, the client can request different sized "graphs" based on a set of tradeoffs like no network requests vs flexibility</p>
-          <p class="fragment">want to minimize requests? grab the biggest possible representation of application state with controls <b>embedded</b> of <i>other potential application states</i>, cache it, and move on</p>
-          <p class="fragment">want to allow flexibility? grab the smallest representation of application state with minimal controls <b>linking</b> (referencing, like reference types) to other potential application states</p>
+          <p>Importantly, the client can request different sized "graphs" based on a set of tradeoffs like no network requests vs flexibility.</p>
+          <p class="fragment">Want to minimize requests? Grab the biggest possible representation of application state with controls <b>embedded</b> of <i>other potential application states</i>, cache it, and move on.</p>
+          <p class="fragment">Want to allow flexibility? Grab the smallest representation of application state with minimal controls <b>linking</b> (referencing, like reference types) to other potential application states.</p>
         </section>
 
         <section>
