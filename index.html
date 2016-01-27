@@ -121,7 +121,8 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
         <section>
           <ol>
             <li>"traditional client-server style" is Option 1, and means you only get what the server can render for you. GraphQL <i>by itself</i> fits in here, by putting a declarative interface on that rendering of data.</li>
-            <li>Flash and Java applets are examples of Option 2. Obvious downsides: big over the wire, compatibility issues on the client.</li>
+            <li>Flash and Java applets are examples of Option 2. Obvious downsides: big over the wire, compatibility issues on the client. This is basically extinct except of course for: <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">BREAKING: Rails 5 will run each HTTP request in it&#39;s own Docker container</p>&mdash; Hacker News Onion (@HackerNewsOnion) <a href="https://twitter.com/HackerNewsOnion/status/395719209411301376">October 31, 2013</a></blockquote>
+              <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></li>
             <li>RPC schemes that work by sharing header files (declarations) fit in Option 3, and so does Protobuf if you squint a little.</li>
           </ol>
         </section>
@@ -136,63 +137,26 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 
         <section>
           <p class="bubble">How do the server and client share understanding of data types?</p>
-          <p class="fragment">Content negotiation, though there's a weak spot here: both client and server need to know about possible media formats at development time.</p>
+          <p class="fragment">Profiles, and registered media types.</p>
           <p class="bubble">Where do we get our standardized interface?</p>
           <p class="fragment">Our protocol.</p>
           <p class="fragment bubble">But HTTP sux. :c</p>
           <p class="fragment">That's just one protocol. Don't let it box you in!</p>
         </section>
 
-        <section>
-            <blockquote>
-              <a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm">Hypermedia</a> is defined by the presence of <span style="background-color:yellow;">application control information embedded within, <b>or as a layer above</b>, the presentation of information</span>. Distributed hypermedia allows the presentation and control information to be stored at remote locations.
-            </blockquote>
-        </section>
-
         <section data-background="cyber_city_by_shelest.jpg">
           <blockquote style="background-color:white;">
             The model application is therefore an <span style="background-color:yellow;">engine that moves from one state to the next by examining and choosing from among the alternative state transitions in the current set of representations.</span>
           </blockquote>
+          <aside class="notes">The model application, in other words, renders the potential options to the ultimate input: the user.</aside>
         </section>
 
         <section>
-          <p>what does this function do? what happens when it changes?</p>
-          <pre><code>
-POST /SomeFunction HTTP/1.1
-Host: www.example.org
-Content-Type: application/soap+xml; charset=utf-8
-Content-Length: 299
-SOAPAction: "http://example.org/api/free-tickets-to-disney-land"
-
-<?xml version="1.0"?>
-<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
-  <soap:Header>
-  </soap:Header>
-  <soap:Body>
-    <m:SomeFunction xmlns:m="http://www.example.org/SomeFunction">
-      <m:SomeParam>:)</m:SomeParam>
-    </m:SomeFunction>
-  </soap:Body>
-</soap:Envelope>
-          </code></pre>
-        </section>
-
-        <section>
-          <p>SOAP <i>tunnels</i> through the protocol. Hypermedia <i>expresses</i> some of its program's semantics via the available protocol <i>and</i> its message's affordances.</p>
-          <p>SOAP emphasizes function calling (RPC - Remote Procedure Call), while hypermedia is about message passing.</p>
-          <p>SOAP does have a message affordance: <code>SOAPAction</code>, which describes the "intent" of the SOAP message. Not super far off from the notion of a <code>rel</code> in HTML.</p>
-        </section>
-
-        <section>
-          <h2>wtf is a rel???</h2>
-          <pre><code class="hljs" data-trim contenteditable><a href="http://www.example.org/about" rel="about" />about</a></code></pre>
-          <ul>
-            <li>A <code>rel</code> is a <em>message affordance</em> abstracting the dereferenceable message affordance underneath it.</li>
-            <li>A URL is an implementation detail.</li>
-            <li>A <code>rel</code> is a reflection of your domain model.</li>
-            <li>A URL can change. Multiple URLs can point to the same resource.</li>
-            <li>A <code>rel</code> can change, but should change much slower, because it reflects the <em>purpose</em> of our API. (And that doesn't "pivot" as often or as quickly as our code.)</li>
-          </ul>
+          <p class="bubble">How can we expose alternative state transitions in the current set of representations?</p>
+          <blockquote class="fragment">
+            <a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm">Hypermedia</a> is defined by the presence of <span style="background-color:yellow;">application control information embedded within, <b>or as a layer above</b>, the presentation of information</span>. Distributed hypermedia allows the presentation and control information to be stored at remote locations.
+          </blockquote>
+            <aside class="notes">We're doing something fundamentally different here. We're saying expose data with context about how it can be used.</aside>
         </section>
 
         <section>
