@@ -71,6 +71,10 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
   right: -42px;
   top: 42px;
 }
+    .slicing td {
+      width: 200px;
+        color: red;
+    }
       </style>
   </head>
 
@@ -89,49 +93,55 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
           </p>
         </section>
 
+
         <section>
-          <img style="float:left;" height="45%" width="45%" src="gopher.gif">
-          <img style="float:right;" height="45%" width="45%" src="http.jpg">
+          <img src="slicing.jpg">
+          <table class="fragment slicing">
+            <tr>
+              <td>(a) Hypermedia</td>
+              <td>(b)</td>
+              <td>(c)</td>
+              <td>(d)</td>
+              <td>(e) GraphQL</td>
+              </tr>
+            </table>
         </section>
 
         <section>
-          <h2>bg</h2>
-          <ul>
-            <li>HTML + URL + HTTP = Web</li>
-            <li>HTML <i>was designed to model specific domain</i>: <b>human readable documents</b></li>
-            <li>HTML <i>contained</i> URLs that triggered HTTP actions — all in <b>one</b> document</li>
-            <li>competitor was Gopher: control actions (like links) were a <b>separate file</b> paired with a data file <a href="https://en.wikipedia.org/wiki/Gopher_(protocol)#Gopher_characteristics">by a sysadmin</a> 😬</li>
-          </ul>
-        </section>
-
-        <section>
-          <p>but what about <i>your</i> "Web" APIs? do they look more like Gopher or the Web?</p>
-          <p class="bubble fragment">well... you do type <code>http://</code> not <code>gopher://</code>...</p>
-          <p class="bubble fragment">😬</p>
-        </section>
-
-        <section>
-          <h3>why'd the Web beat Gopher? </h3>
-          <div class="fragment">
-            <h4>hypermedia 😎 </h4>
-            <p>here's Fielding to help us grok:</p>
             <blockquote>
               <a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm">Hypermedia</a> is defined by the presence of <span style="background-color:yellow;">application control information embedded within, or as a layer above, the presentation of information</span>. Distributed hypermedia allows the presentation and control information to be stored at remote locations.
             </blockquote>
-          </div>
         </section>
 
         <!-- cyber city by shelest at http://shelest.deviantart.com/art/Cyber-City-3d-04-312818454 -->
         <section data-background="cyber_city_by_shelest.jpg">
           <blockquote style="background-color:white;">
-            A distributed hypermedia architect has only three fundamental options: <ol><li>render the data where it is located and <span style="background-color:yellow;">send a fixed-format image</span> to the recipient;</li> <li>encapsulate the data with a rendering engine and <span style="background-color:yellow;">send both</span> to the recipient; or,</li> <li>send the <span style="background-color:yellow;">raw data</span> to the recipient along <span style="background-color:yellow">with metadata</span> that describes the data type, so that the recipient can choose their own rendering engine.</li></ol>
+            A distributed hypermedia architect has only three fundamental options:
+            <ol>
+              <li>render the data where it is located and <span style="background-color:yellow;">send a fixed-format image</span> to the recipient;</li>
+              <li>encapsulate the data with a rendering engine and <span style="background-color:yellow;">send both</span> to the recipient; or,</li>
+              <li>send the <span style="background-color:yellow;">raw data</span> to the recipient along <span style="background-color:yellow">with metadata</span> that describes the data type, so that the recipient can choose their own rendering engine.</li>
+            </ol>
           </blockquote>
+        </section>
+
+        <section>
+          <ol>
+            <li>"traditional client-server style" is Option 1, and basically means everything happens on the server. GraphQL fits in here.</li>
+            <li>Flash and Java applets are examples of Option 2. Obvious downsides: big over the wire, compatibility issues on the client.</li>
+            <li>Protobuf is a good example of Option 3: "allows the sender to remain simple and scalable while minimizing the bytes transferred, but loses the advantages of information hiding and requires that both sender and recipient understand the same data types."</li>
+          </ol>
         </section>
 
         <section data-background="cyber_city_by_shelest.jpg">
           <blockquote style="background-color:white;">
             REST provides a hybrid of all three options by focusing on a shared understanding of data types with metadata, but limiting the scope of what is revealed to a standardized interface.
           </blockquote>
+          <aside class="notes">REST describes a statically typed program with early binding: types are known "at compile time".
+          This "engine" is the interpreter pattern. (The interpreter pattern is a free Monad.)</aside>
+        </section>
+
+        <section data-background="cyber_city_by_shelest.jpg">
           <blockquote style="background-color:white;">
             The model application is therefore an <span style="background-color:yellow;">engine that moves from one state to the next by examining and choosing from among the alternative state transitions in the current set of representations.</span>
           </blockquote>
@@ -236,40 +246,28 @@ SOAPAction: "http://example.org/api/free-tickets-to-disney-land"
         </section>
 
         <section>
-          <h2>hypermedia vs linked data</h2>
-          <ul>
-            <li>linked data likes super duper normalized data 🔬</li>
+          <h2>hypermedia != linked data</h2>
+            <h3>linked data likes super duper normalized data 🔬</h3>
             <ul>
               <li class="fragment">like RDF triples</li>
               <li class="fragment"><code>uri://people#<font color=red>Mike</font>Smith12 http://xmlns.com/foaf/0.1/<font color=red>knows</font> uri://people#<font color=red>John</font>Doe45</code></li>
               <li class="fragment">"What makes RDF triples special is that EVERY PART of the triple has a URI associated with it" — <a href="http://stackoverflow.com/a/1122451/1791856">Stack Overflow</a></li>
             </ul>
-            <li>hypermedia just wants to make you happy 🎁</li>
+          </section>
+
+          <section>
+            <h3>hypermedia just wants to make you happy 🎁</h3>
             <ul>
               <li class="fragment">like <a href="http://blogs.msdn.com/b/webdev/archive/2013/07/05/introducing-select-and-expand-support-in-web-api-odata.aspx">OData URL conventions</a></li>
               <li class="fragment"><code>$select</code> and <code>$expand</code></li>
               <li class="fragment">"give me only these bits" and "give me every relation inline" (eager load it)</li>
             </ul>
-          </ul>
 
           <aside class="notes">
             linked data prioritizes data discovery, hypermedia prioritizes useful program data
             what do they have in common?
             they use structured data
           </aside>
-        </section>
-
-        <section>
-          <p class="bubble">soooo... i guess the client just doesnt write code anymore?</p>
-          <p class="bubble">i thought thin clients were dead, dude</p>
-          <p class="bubble">just send me the data! delete all the other crap!</p>
-          <p class="bubble">😒</p>
-        </section>
-
-        <section data-background="raptor_blur.jpg">
-          <p class="fragment" style="background-color:white;">ontological assertion time: there is no data without interpretation. <span style="background-color:yellow;">interpretation signals application control</span>, so embrace that and ask for good data (data with good interpretations embedded)</p>
-          <p class="fragment" style="background-color:white;">it's not thick v thin client anymore. "smart" client won (in a tie with "smart" server)</p>
-          <p class="fragment" style="background-color:white;">TL;DR good data == <i>useful/usable</i> data</p>
         </section>
 
         <section>
