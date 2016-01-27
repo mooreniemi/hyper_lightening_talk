@@ -120,9 +120,9 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 
         <section>
           <ol>
-            <li>"traditional client-server style" is Option 1, and means you only get what the server can render for you. GraphQL <i>by itself</i> fits in here, by putting a declarative interface on that rendering of data. Downsides? "severely restricts the functionality of the recipient and places most of the processing load on the sender, leading to scalability problems"</li>
+            <li>"traditional client-server style" is Option 1, and means you only get what the server can render for you. GraphQL <i>by itself</i> fits in here, by putting a declarative interface on that rendering of data.</li>
             <li>Flash and Java applets are examples of Option 2. Obvious downsides: big over the wire, compatibility issues on the client. Basically extinct.</li>
-            <li>RPC schemes that work by sharing header files (declarations) fit in Option 3, and so does Protobuf if you squint a little. Downsides? Lose information hiding, more coupling.</li>
+            <li>RPC schemes that work by sharing header files (declarations) fit in Option 3, and so does Protobuf if you squint a little.</li>
           </ol>
         </section>
 
@@ -138,9 +138,9 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
           <p class="bubble">How do the server and client share understanding of data types?</p>
           <p class="fragment">Profiles, and registered media types.</p>
           <p class="bubble">Where do we get our standardized interface?</p>
-          <p class="fragment">Our protocol.</p>
+          <p class="fragment">Our types, and our protocol.</p>
           <p class="fragment bubble">But HTTP sux. :c</p>
-          <p class="fragment">That's just one protocol. Don't let it box you in!</p>
+          <p class="fragment">That's just one protocol. Don't let it box you in! (Also: no it doesn't.)</p>
         </section>
 
         <section data-background="cyber_city_by_shelest.jpg">
@@ -152,6 +152,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 
         <section>
           <p class="bubble">How can we expose alternative state transitions in the current set of representations?</p>
+          <p class="fragment">Hypermedia.</p>
           <blockquote class="fragment">
             <a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm">Hypermedia</a> is defined by the presence of <span style="background-color:yellow;">application control information embedded within, <b>or as a layer above</b>, the presentation of information</span>. Distributed hypermedia allows the presentation and control information to be stored at remote locations.
           </blockquote>
