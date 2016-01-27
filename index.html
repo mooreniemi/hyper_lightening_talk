@@ -120,9 +120,9 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 
         <section>
           <ol>
-            <li>"traditional client-server style" is Option 1, and means you only get what the server can render for you. GraphQL <i>by itself</i> fits in here, by putting a declarative interface on that rendering of data.</li>
+            <li>"traditional client-server style" is Option 1, and means you only get what the server can render for you. GraphQL <i>by itself</i> fits in here, by putting a declarative interface on that rendering of data. Downsides? "severely restricts the functionality of the recipient and places most of the processing load on the sender, leading to scalability problems"</li>
             <li>Flash and Java applets are examples of Option 2. Obvious downsides: big over the wire, compatibility issues on the client. Basically extinct.</li>
-            <li>RPC schemes that work by sharing header files (declarations) fit in Option 3, and so does Protobuf if you squint a little.</li>
+            <li>RPC schemes that work by sharing header files (declarations) fit in Option 3, and so does Protobuf if you squint a little. Downsides? Lose information hiding, more coupling.</li>
           </ol>
         </section>
 
